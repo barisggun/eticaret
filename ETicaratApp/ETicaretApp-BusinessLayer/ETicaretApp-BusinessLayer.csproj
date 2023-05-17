@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ETicaretApp-DataAccess\ETicaretApp-DataAccess.csproj" />
+    <ProjectReference Include="..\ETicaretApp-EntityLayer\ETicaretApp-EntityLayer.csproj" />
+  </ItemGroup>
+
 </Project>
