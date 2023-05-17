@@ -10,9 +10,9 @@ namespace ETicaretApp_DataAccess.Concrete
 {
     public class Context : DbContext
     {
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //optionsBuilder.UseSqlServer("server=ISILAY;database=ETicaretApp;integrated security=true; TrustServerCertificate = true ");
             //Connection string oluşturmak için bu yapıya ihtiyaç vardır.
             optionsBuilder.UseSqlServer("server=LAPTOP-TKFJC4RO\\SQLEXPRESS;database=ETicaretApp;integrated security=true; TrustServerCertificate = true ");
         }
