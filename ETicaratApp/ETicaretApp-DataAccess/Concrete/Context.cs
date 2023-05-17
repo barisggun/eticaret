@@ -14,7 +14,7 @@ namespace ETicaretApp_DataAccess.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Connection string oluşturmak için bu yapıya ihtiyaç vardır.
-            optionsBuilder.UseSqlServer("server=ISILAY;database=ETicaretApp;integrated security=true; TrustServerCertificate = true ");
+            optionsBuilder.UseSqlServer("server=LAPTOP-TKFJC4RO\\SQLEXPRESS;database=ETicaretApp;integrated security=true; TrustServerCertificate = true ");
         }
 
         DbSet<Product> Products { get; set; }   
