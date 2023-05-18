@@ -12,9 +12,4 @@
     <ProjectReference Include="..\ETicaretApp-EntityLayer\ETicaretApp-EntityLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
-  </ItemGroup>
-
 </Project>

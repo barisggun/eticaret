@@ -27,4 +27,9 @@
     <ProjectReference Include="..\ETicaretApp-EntityLayer\ETicaretApp-EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewComponents\Product\" />
+    <Folder Include="Views\Shared\Components\" />
+  </ItemGroup>
+
 </Project>
