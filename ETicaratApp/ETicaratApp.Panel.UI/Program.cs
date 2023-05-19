@@ -1,3 +1,6 @@
+using ETicaretApp_DataAccess.Concrete;
+using Microsoft.EntityFrameworkCore;
+
 namespace ETicaratApp.Panel.UI
 {
     public class Program
@@ -5,6 +8,12 @@ namespace ETicaratApp.Panel.UI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<Context>(option =>
+            option.UseSqlServer(builder.Configuration.GetConnectionString
+            ("MyConnectionString")));
+
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();

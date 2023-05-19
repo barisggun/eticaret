@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="ViewComponents\Product\" />
+    <Folder Include="Views\Product\" />
     <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
