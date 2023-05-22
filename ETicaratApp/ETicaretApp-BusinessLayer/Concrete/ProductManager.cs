@@ -11,36 +11,82 @@ namespace ETicaretApp_BusinessLayer.Concrete
 {
     public class ProductManager : IProductService
     {
-        IProductDal _productDal;
+        private IProductDal _productDal;
 
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
 
-        public List<Product> GetList()
+
+        public bool Create(Product entity)
         {
-            return _productDal.GetListAll();
+            if (Validate(entity))
+            {
+                _productDal.Create(entity);
+                return true;
+            }
+            return false;
         }
 
-        public void TAdd(Product t)
+        public void Delete(Product entity)
         {
-            _productDal.Insert(t);
+            _productDal.Delete(entity);
         }
 
-        public void TDelete(Product t)
+        public List<Product> GetAll()
         {
-            _productDal.Delete(t);
+            return _productDal.GetAll();
         }
 
-        public Product TGetById(int id)
+        public Product GetById(int id)
         {
             return _productDal.GetById(id);
         }
 
-        public void TUpdate(Product t)
+        public Product GetByIdWithCategories(int id)
         {
-            _productDal.Update(t);  
+            return _productDal.GetByIdWithCategories(id);
+        }
+
+        public int GetCountByCategory(string category)
+        {
+            return _productDal.GetCountByCategory(category);
+        }
+
+        public Product GetProductDetails(int id)
+        {
+            return _productDal.GetProductDetails(id);
+        }
+
+        public List<Product> GetProductsByCategory(string category, int page, int pageSize)
+        {
+            return _productDal.GetProductsByCategory(category, page, pageSize);
+        }
+
+        public void Update(Product entity)
+        {
+            _productDal.Update(entity);
+        }
+
+        public void Update(Product entity, int[] categoryIds)
+        {
+            _productDal.Update(entity, categoryIds);
+        }
+
+        public string ErrorMessage { get; set; }
+
+        public bool Validate(Product entity)
+        {
+            var isValid = true;
+
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                ErrorMessage += "ürün ismi girmelisiniz";
+                isValid = false;
+            }
+
+            return isValid;
         }
     }
 }

@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace ETicaretApp_BusinessLayer.Abstract
 {
-    public interface IGenericService<T>
+    public interface IValidator<T>
     {
-        void TAdd(T t);
-
-        void TDelete(T t);
-
-        void TUpdate(T t);
-
-        List<T> GetList();
-
-        T TGetById(int id);
+        string ErrorMessage { get; set; }
+        bool Validate(T entity);
     }
 }
