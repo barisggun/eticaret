@@ -8,5 +8,15 @@ namespace ETicaratApp.Panel.UI.Controllers
         {
             return View();
         }
+        
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+        
+        public IActionResult EditProduct()
+        {
+            return View();
+        }
     }
 }
