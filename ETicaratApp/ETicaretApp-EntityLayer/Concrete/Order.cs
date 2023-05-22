@@ -52,4 +52,4 @@ namespace ETicaretApp_EntityLayer.Concrete
         Eft = 1
     }
 }
-}
+
