@@ -9,11 +9,12 @@ namespace ETicaretApp_DataAccess.Abstract
 {
     public interface IGenericDal<T> where T:class
     {
-        void Insert(T t);
-        void Update(T t);
-        void Delete(T t);
-        List<T> GetListAll();
         T GetById(int id);
-        List<T> GetListAll(Expression<Func<T, bool>> filter);
+        T GetOne(Expression<Func<T, bool>> filter);
+        List<T> GetAll(Expression<Func<T, bool>> filter = null);
+
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }

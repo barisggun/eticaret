@@ -9,13 +9,11 @@ namespace ETicaretApp_EntityLayer.Concrete
 {
     public class Product : BaseEntity
     {
-        public string? ProductName { get; set; }
-        public string? Brand { get; set; }
-        public string? Description { get; set; }
-        public int? Price { get; set; }
-        public int? Stock { get; set; }
-        public bool? Status { get; set; }
-        public string? ProductImage { get; set; }
-        public Category? Category { get; set; }
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public string Description { get; set; }
+        public decimal? Price { get; set; }
+
+        public List<ProductCategory> ProductCategories { get; set; }
     }
 }
