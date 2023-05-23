@@ -14,19 +14,16 @@ namespace ETicaretApp_DataAccess.EntityFramework
 {
     public class EfProductRepository : GenericRepository<Product>, IProductDal
     {
-        private readonly Context _context;
-        public EfProductRepository(Context context) : base(context)
-        {
-            _context = context;
-        }
-
         public Product GetByIdWithCategories(int id)
         {
-            return _context.Products
+            using (var context = new Context())
+            {
+                return context.Products
                         .Where(i => i.Id == id)
                         .Include(i => i.ProductCategories)
                         .ThenInclude(i => i.Category)
                         .FirstOrDefault();
+            }
         }
 
         //public int GetCountByCategory(string category)
@@ -51,69 +48,81 @@ namespace ETicaretApp_DataAccess.EntityFramework
         public int GetCountByCategory(string category)
         {
 
-            var products = _context.Products.AsQueryable();
-
-            if (!string.IsNullOrEmpty(category))
+            using (var context = new Context())
             {
-                products = products
-                            .Include(i => i.ProductCategories)
-                            .ThenInclude(i => i.Category)
-                            .Where(i => i.ProductCategories.Any(a => a.Category.Name.ToLower() == category.ToLower()));
-            }
+                var products = context.Products.AsQueryable();
 
-            return products.Count();
+                if (!string.IsNullOrEmpty(category))
+                {
+                    products = products
+                                .Include(i => i.ProductCategories)
+                                .ThenInclude(i => i.Category)
+                                .Where(i => i.ProductCategories.Any(a => a.Category.Name.ToLower() == category.ToLower()));
+                }
+
+                return products.Count();
+            }
 
         }
 
         public Product GetProductDetails(int id)
         {
 
-            return _context.Products
-                        .Where(i => i.Id == id)
-                        .Include(i => i.ProductCategories)
-                        .ThenInclude(i => i.Category)
-                        .FirstOrDefault();
+            using (var context = new Context())
+            {
+                return context.Products
+                            .Where(i => i.Id == id)
+                            .Include(i => i.ProductCategories)
+                            .ThenInclude(i => i.Category)
+                            .FirstOrDefault();
+            }
 
         }
 
         public List<Product> GetProductsByCategory(string category, int page, int pageSize)
         {
 
-            var products = _context.Products.AsQueryable();
-
-            if (!string.IsNullOrEmpty(category))
+            using (var context = new Context())
             {
-                products = products
-                            .Include(i => i.ProductCategories)
-                            .ThenInclude(i => i.Category)
-                            .Where(i => i.ProductCategories.Any(a => a.Category.Name.ToLower() == category.ToLower()));
-            }
+                var products = context.Products.AsQueryable();
 
-            return products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                if (!string.IsNullOrEmpty(category))
+                {
+                    products = products
+                                .Include(i => i.ProductCategories)
+                                .ThenInclude(i => i.Category)
+                                .Where(i => i.ProductCategories.Any(a => a.Category.Name.ToLower() == category.ToLower()));
+                }
+
+                return products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            }
 
         }
 
         public void Update(Product entity, int[] categoryIds)
         {
 
-            var product = _context.Products
-                               .Include(i => i.ProductCategories)
-                               .FirstOrDefault(i => i.Id == entity.Id);
-
-            if (product != null)
+            using (var context = new Context())
             {
-                product.Name = entity.Name;
-                product.Description = entity.Description;
-                product.ImageUrl = entity.ImageUrl;
-                product.Price = entity.Price;
+                var product = context.Products
+                                   .Include(i => i.ProductCategories)
+                                   .FirstOrDefault(i => i.Id == entity.Id);
 
-                product.ProductCategories = categoryIds.Select(catid => new ProductCategory()
+                if (product != null)
                 {
-                    CategoryId = catid,
-                    ProductId = entity.Id
-                }).ToList();
+                    product.Name = entity.Name;
+                    product.Description = entity.Description;
+                    product.ImageUrl = entity.ImageUrl;
+                    product.Price = entity.Price;
 
-                _context.SaveChanges();
+                    product.ProductCategories = categoryIds.Select(catid => new ProductCategory()
+                    {
+                        CategoryId = catid,
+                        ProductId = entity.Id
+                    }).ToList();
+
+                    context.SaveChanges();
+                }
             }
 
         }

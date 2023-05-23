@@ -10,9 +10,15 @@ namespace ETicaretApp_DataAccess.Concrete
 {
     public class Context : DbContext
     {
-        public Context(DbContextOptions options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer("server=ISILAY;database=ETicaretApp;Trusted_Connection=true;TrustServerCertificate=true");
+        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductCategory>()
+                    .HasKey(c => new { c.CategoryId, c.ProductId });
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

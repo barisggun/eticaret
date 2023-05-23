@@ -9,9 +9,9 @@ namespace ETicaratApp.Panel.UI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<Context>(option =>
-            option.UseSqlServer(builder.Configuration.GetConnectionString
-            ("MyConnectionString")));
+            //builder.Services.AddDbContext<Context>(option =>
+            //option.UseSqlServer(builder.Configuration.GetConnectionString
+            //("MyConnectionString")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
