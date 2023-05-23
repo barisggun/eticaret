@@ -3,6 +3,7 @@ using ETicaretApp_BusinessLayer.Concrete;
 using ETicaretApp_DataAccess.Concrete;
 using ETicaretApp_DataAccess.EntityFramework;
 using ETicaretApp_EntityLayer.Concrete;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,9 +12,15 @@ namespace ETicaratApp.Panel.UI.Controllers
     public class ProductController : Controller
     {
         //private IProductService _productService;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
         ProductManager productManager = new ProductManager
             (new EfProductRepository());
+
+        public ProductController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
 
         //public ProductController(IProductService productService)
         //{
@@ -32,8 +39,26 @@ namespace ETicaratApp.Panel.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public IActionResult AddProduct(Product product, IFormFile file)
         {
+            product.ImageUrl = "";
+            if (file != null)
+            {
+                string wwwrootPath = webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+
+                string yeniDosyaAdi = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwrootPath + "/images/product/", yeniDosyaAdi);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                product.ImageUrl = yeniDosyaAdi;
+            }
+
             productManager.Create(product);
             return RedirectToAction("Index");
         }

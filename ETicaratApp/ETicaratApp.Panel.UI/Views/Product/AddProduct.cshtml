@@ -54,19 +54,23 @@
                             <p class="card-title-desc">Gerekli bütün yerleri doldurunuz.</p>
                         </div>
                         <div class="card-body">
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6">                            
                                         <div class="mb-3">
                                             <label asp-for="Name">Product Name</label>
                                             <input asp-for="Name" type="text" class="form-control">
                                             <span asp-validation-for="Name" class="text-danger"></span>
                                         </div>
+
+
                                         <div class="mb-3">
                                             <label asp-for="ImageUrl">Image URL</label>
-                                            <input asp-for="ImageUrl" type="text" class="form-control">
+                                            <input type="file" name="file" multiple="false" class="form-control">
                                             <span asp-validation-for="ImageUrl" class="text-danger"></span>
                                         </div>
+
+
                                         <div class="mb-3">
                                             <label asp-for="Description">Ürün Açıklaması</label>
                                             <input asp-for="Description" type="text" class="form-control">
