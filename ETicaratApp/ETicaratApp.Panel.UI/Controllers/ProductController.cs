@@ -25,10 +25,16 @@ namespace ETicaratApp.Panel.UI.Controllers
             return View(list);
         }
 
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            return View();
+            productManager.Create(product);
+            return RedirectToAction("Index");
         }
         
         public IActionResult EditProduct()
