@@ -6,6 +6,7 @@ using ETicaretApp_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection.Metadata;
 
 namespace ETicaratApp.Panel.UI.Controllers
 {
@@ -62,7 +63,7 @@ namespace ETicaratApp.Panel.UI.Controllers
             productManager.Create(product);
             return RedirectToAction("Index");
         }
-        
+
         public IActionResult EditProduct(int id)
         {
             Product product = productManager.GetById(id);
@@ -70,14 +71,26 @@ namespace ETicaratApp.Panel.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProduct(Product product)
+        public IActionResult EditProduct(Product product, IFormFile? file)
         {
-                productManager.Update(product);
-                return RedirectToAction("Index");
-            
+            if (file != null)
+            {
+                string wwwrootPath = webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
 
-            
-            //return View(product);
+                string yeniDosyaAdi = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwrootPath + "/images/product/", yeniDosyaAdi);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                product.ImageUrl = yeniDosyaAdi;
+            }
+            productManager.Update(product);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult DeleteProduct(int id)

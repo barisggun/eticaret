@@ -54,19 +54,30 @@
                             <p class="card-title-desc">Fill all information below</p>
                         </div>
                         <div class="card-body">
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-3">
+                                            <div class="form-group">
+                                                <input asp-for="Id" class="form-control" type="hidden" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <img class="img-fluid" src="~/images/product/@Model.ImageUrl" alt="Photo" style="width:150px;height:150px;border-radius:15px;">
+                                            </div>
+
                                             <label asp-for="Name">Product Name</label>
                                             <input asp-for="Name" type="text" class="form-control">
                                             <span asp-validation-for="Name" class="text-danger"></span>
                                         </div>
                                         <div class="mb-3">
                                             <label asp-for="ImageUrl">Image URL</label>
-                                            <input type="file" name="file" multiple="false" class="form-control">
+                                            <input type="file" name="file" multipe="false" class="form-control">
                                             <span asp-validation-for="ImageUrl" class="text-danger"></span>
                                         </div>
+
+                                     
+
                                         <div class="mb-3">
                                             <label asp-for="Description">Ürün Açıklaması</label>
                                             <input asp-for="Description" type="text" class="form-control">
