@@ -2,6 +2,7 @@
 using ETicaretApp_DataAccess.Concrete;
 using ETicaretApp_DataAccess.Repositories;
 using ETicaretApp_EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,5 @@ namespace ETicaretApp_DataAccess.EntityFramework
         {
             _context = context;
         }
-
-
-
-
-
     }
 }

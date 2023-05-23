@@ -26,10 +26,10 @@ namespace ETicaretApp_BusinessLayer.Concrete
             _categoryDal.Delete(entity);
         }
 
-        public void DeleteFromCategory(int categoryId, int productId)
-        {
-            _categoryDal.DeleteFromCategory(categoryId, productId);
-        }
+        //public void DeleteFromCategory(int categoryId, int productId)
+        //{
+        //    _categoryDal.DeleteFromCategory(categoryId, productId);
+        //}
 
         public List<Category> GetAll()
         {
@@ -41,10 +41,10 @@ namespace ETicaretApp_BusinessLayer.Concrete
             return _categoryDal.GetById(id);
         }
 
-        public Category GetByIdWithProducts(int id)
-        {
-            return _categoryDal.GetByIdWithProducts(id);
-        }
+        //public Category GetByIdWithProducts(int id)
+        //{
+        //    return _categoryDal.GetByIdWithProducts(id);
+        //}
 
         public void Update(Category entity)
         {
