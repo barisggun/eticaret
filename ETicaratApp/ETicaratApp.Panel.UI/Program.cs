@@ -13,8 +13,6 @@ namespace ETicaratApp.Panel.UI
             //option.UseSqlServer(builder.Configuration.GetConnectionString
             //("MyConnectionString")));
 
-
-
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
