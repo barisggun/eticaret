@@ -403,3 +403,4 @@ FodyWeavers.xsd
 /ETicaratApp/ETicaratApp.Panel.UI/appsettings.json
 
 
+/ETicaratApp/ETicaretApp-DataAccess/Concrete/Context.cs
