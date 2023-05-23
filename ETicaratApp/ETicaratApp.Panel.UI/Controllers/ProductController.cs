@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ETicaretApp_BusinessLayer.Concrete;
+using ETicaretApp_DataAccess.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaratApp.Panel.UI.Controllers
 {
