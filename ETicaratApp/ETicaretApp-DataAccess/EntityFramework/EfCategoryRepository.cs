@@ -13,10 +13,6 @@ namespace ETicaretApp_DataAccess.EntityFramework
 {
     public class EfCategoryRepository : GenericRepository<Category>, ICategoryDal
     {
-        private readonly Context _context;
-        public EfCategoryRepository(Context context) : base(context)
-        {
-            _context = context;
-        }
+        
     }
 }

@@ -10,8 +10,8 @@ namespace ETicaretApp_DataAccess.Abstract
     public interface IGenericDal<T> where T:class
     {
         T GetById(int id);
-        T GetOne(Expression<Func<T, bool>> filter);
-        List<T> GetAll(Expression<Func<T, bool>> filter = null);
+        //T GetOne(Expression<Func<T, bool>> filter);
+        List<T> GetAll();
 
         void Create(T entity);
         void Update(T entity);
