@@ -76,8 +76,8 @@
                                                 <td>@item.Description</td>
                                                 <td>@item.Price</td>
                                                 <td>
-                                                    <a onclick="openDeleteModal('Product', @item.Id)" class="btn btn-danger btn-sm" title="Kaydı Sil"><i class="fa fa-trash"></i></a>
-                                                    <a onclick="openEditModal('Product', @item.Id)" class="btn btn-warning btn-sm" title="Kaydı Güncelle"><i class="fa fa-edit"></i></a>
+                                                    <a asp-action="DeleteProduct" class="btn btn-danger btn-sm" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                                                    <a asp-action="EditProduct" class="btn btn-warning btn-sm" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                         }

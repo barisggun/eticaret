@@ -4,6 +4,7 @@ using ETicaretApp_DataAccess.Concrete;
 using ETicaretApp_DataAccess.EntityFramework;
 using ETicaretApp_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ETicaratApp.Panel.UI.Controllers
 {
@@ -37,9 +38,35 @@ namespace ETicaratApp.Panel.UI.Controllers
             return RedirectToAction("Index");
         }
         
-        public IActionResult EditProduct()
+        public IActionResult EditProduct(int id)
         {
-            return View();
+            Product product = productManager.GetById(id);
+            return View(product);
         }
+
+        [HttpPost]
+        public IActionResult EditProduct(Product product)
+        {
+                productManager.Update(product);
+                return RedirectToAction("Index");
+            
+
+            
+            //return View(product);
+        }
+
+        public IActionResult DeleteProduct(int id)
+        {
+            Product product = productManager.GetById(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(Product product)
+        {
+            productManager.Delete(product);
+            return RedirectToAction("Index");
+        }
+
     }
 }
