@@ -401,4 +401,4 @@ FodyWeavers.xsd
 
 
 /ETicaratApp/ETicaratApp.Panel.UI/appsettings.json
-/ETicaratApp/ETicaratApp-DataAccess/Concrete/Context
+/ETicaratApp/ETicaratApp-DataAccess/Concrete/Context.cs
