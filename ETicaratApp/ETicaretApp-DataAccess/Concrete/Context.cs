@@ -13,8 +13,8 @@ namespace ETicaretApp_DataAccess.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //("server=ISILAY;database=ETicaretApp;Trusted_Connection=true;TrustServerCertificate=true");
-
-            optionsBuilder.UseSqlServer("server=ISILAY;database=ETicaretApp;Trusted_Connection=true;TrustServerCertificate=true");
+            
+            optionsBuilder.UseSqlServer("server =LAPTOP-TKFJC4RO\\SQLEXPRESS;database=ETic;Trusted_Connection=true;TrustServerCertificate=true");
         }
     
         protected override void OnModelCreating(ModelBuilder modelBuilder)
