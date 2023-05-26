@@ -38,6 +38,14 @@ namespace ETicaratApp.Panel.UI.Controllers
 
         public IActionResult AddProduct()
         {
+            List<SelectListItem> categoryvalues = (from x in
+                 categoryManager.GetAll()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.Id.ToString()
+                                                   }).ToList();
+            ViewBag.CategoryValues = categoryvalues;
             return View();
         }
 
@@ -62,14 +70,7 @@ namespace ETicaratApp.Panel.UI.Controllers
                 product.ImageUrl = yeniDosyaAdi;
             }
 
-            List<SelectListItem> categoryvalues = (from x in
-                  categoryManager.GetAll()
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.CategoryName,
-                                                       Value = x.Id.ToString()
-                                                   }).ToList();
-            ViewBag.CategoryValues = categoryvalues;
+           
             productManager.Create(product);
             return RedirectToAction("Index");
         }
