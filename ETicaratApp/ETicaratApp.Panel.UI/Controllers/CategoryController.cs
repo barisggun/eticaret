@@ -22,7 +22,7 @@ namespace ETicaratApp.Panel.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct(Category category)
+        public IActionResult AddCategory(Category category)
         {         
             cm.Create(category);
             return RedirectToAction("Index");

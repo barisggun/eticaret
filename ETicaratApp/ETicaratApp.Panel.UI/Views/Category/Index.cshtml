@@ -52,7 +52,7 @@
                                         @Html.DisplayFor(modelItem => item.CategoryName)
                                     </td>
                                     <td>
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        <a asp-action="DeleteCategory" class="btn btn-danger btn-sm" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             }
