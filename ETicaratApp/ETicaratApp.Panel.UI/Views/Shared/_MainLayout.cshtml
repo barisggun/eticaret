@@ -154,7 +154,7 @@
                         </div>
                     </div>
                 </nav>
-                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+               @* <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
                             <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
@@ -187,13 +187,14 @@
                             <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
                     </a>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
+    @RenderBody()
     <!-- Navbar End -->
     <!-- Featured Start -->
-    <div class="container-fluid pt-5">
+@*    <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
@@ -284,7 +285,7 @@
     <!-- Categories End -->
 
     <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-5">
+   @* <div class="container-fluid bg-secondary my-5">
         <div class="row justify-content-md-center py-5 px-xl-5">
             <div class="col-md-6 col-12 py-5">
                 <div class="text-center mb-2 pb-2">
@@ -301,7 +302,15 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>*@
+
+
+
+
+
+
+
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
@@ -390,4 +399,3 @@
 </body>
 
 </html>
-@RenderBody();
