@@ -13,6 +13,21 @@ namespace ETicaretApp_DataAccess.EntityFramework
 {
     public class EfCategoryRepository : GenericRepository<Category>, ICategoryDal
     {
-        
+        //public void DeleteFromCategory(int categoryId, int productId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Category GetByIdWithProducts(int id)
+        //{
+        //    using (var context = new Context())
+        //    {
+        //        return context.Categories.Where(x => x.Id == id)
+        //                                 .Include(x => x.SubCategorie)
+        //                                 .Include(x => x.ProductCategory)
+        //                                 .ThenInclude(x => x.Product)
+        //                                 .FirstOrDefault();
+        //    }
+        //}
     }
 }

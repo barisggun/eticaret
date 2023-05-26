@@ -89,5 +89,10 @@ namespace ETicaretApp_BusinessLayer.Concrete
 
             return isValid;
         }
+
+        public List<Product> GetProductListWithCategory()
+        {
+            return _productDal.GetListWithCategory();
+        }
     }
 }

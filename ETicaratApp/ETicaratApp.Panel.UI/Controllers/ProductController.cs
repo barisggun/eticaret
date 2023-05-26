@@ -17,6 +17,8 @@ namespace ETicaratApp.Panel.UI.Controllers
 
         ProductManager productManager = new ProductManager
             (new EfProductRepository());
+        CategoryManager categoryManager = new CategoryManager
+            (new EfCategoryRepository());
 
         public ProductController(IWebHostEnvironment webHostEnvironment)
         {
@@ -60,8 +62,19 @@ namespace ETicaratApp.Panel.UI.Controllers
                 product.ImageUrl = yeniDosyaAdi;
             }
 
+<<<<<<< HEAD
 
 
+=======
+            List<SelectListItem> categoryvalues = (from x in
+                  categoryManager.GetAll()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.Id.ToString()
+                                                   }).ToList();
+            ViewBag.CategoryValues = categoryvalues;
+>>>>>>> 68ac2f0184b0492aaaa8dff992c7e6aac35d4f9f
             productManager.Create(product);
             return RedirectToAction("Index");
         }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretApp_DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230523155941_ImageUrlDeneme")]
-    partial class ImageUrlDeneme
+    [Migration("20230526092441_CreateCategoryProductConnection")]
+    partial class CreateCategoryProductConnection
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,7 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -192,11 +192,15 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -208,25 +212,9 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.ProductCategory", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.CartItem", b =>
@@ -267,23 +255,15 @@ namespace ETicaretApp_DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.ProductCategory", b =>
+            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Product", b =>
                 {
                     b.HasOne("ETicaretApp_EntityLayer.Concrete.Category", "Category")
-                        .WithMany("ProductCategories")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ETicaretApp_EntityLayer.Concrete.Product", "Product")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Cart", b =>
@@ -293,17 +273,12 @@ namespace ETicaretApp_DataAccess.Migrations
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Category", b =>
                 {
-                    b.Navigation("ProductCategories");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Order", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Product", b =>
-                {
-                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }
