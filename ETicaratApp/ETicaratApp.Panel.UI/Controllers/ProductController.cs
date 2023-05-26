@@ -60,6 +60,8 @@ namespace ETicaratApp.Panel.UI.Controllers
                 product.ImageUrl = yeniDosyaAdi;
             }
 
+
+
             productManager.Create(product);
             return RedirectToAction("Index");
         }
