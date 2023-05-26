@@ -10,7 +10,6 @@ namespace ETicaretApp_BusinessLayer.Abstract
     public interface ICategoryService
     {
         Category GetById(int id);
-        //Category GetByIdWithProducts(int id);
         List<Category> GetAll();
         void Create(Category category);
         void Update(Category category);

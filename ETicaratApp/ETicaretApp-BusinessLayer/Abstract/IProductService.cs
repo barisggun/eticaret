@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,5 +20,6 @@ namespace ETicaretApp_BusinessLayer.Abstract
         bool Create(Product product);
         void Update(Product product);
         void Delete(Product product);
+        List<Product> GetProductListWithCategory();
     }
 }

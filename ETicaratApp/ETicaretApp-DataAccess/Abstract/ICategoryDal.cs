@@ -9,6 +9,7 @@ namespace ETicaretApp_DataAccess.Abstract
 {
     public interface ICategoryDal:IGenericDal<Category>
     {
-        
+        //Category GetByIdWithProducts(int id);
+        //void DeleteFromCategory(int categoryId, int productId);
     }
 }

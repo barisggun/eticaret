@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretApp_DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230523201604_imageurlnullabledeleted")]
-    partial class imageurlnullabledeleted
+    [Migration("20230526090642_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,7 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -212,24 +212,6 @@ namespace ETicaretApp_DataAccess.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.ProductCategory", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductCategories");
-                });
-
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.CartItem", b =>
                 {
                     b.HasOne("ETicaretApp_EntityLayer.Concrete.Cart", "Cart")
@@ -268,43 +250,14 @@ namespace ETicaretApp_DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.ProductCategory", b =>
-                {
-                    b.HasOne("ETicaretApp_EntityLayer.Concrete.Category", "Category")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ETicaretApp_EntityLayer.Concrete.Product", "Product")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Cart", b =>
                 {
                     b.Navigation("CartItems");
                 });
 
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Category", b =>
-                {
-                    b.Navigation("ProductCategories");
-                });
-
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Order", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Product", b =>
-                {
-                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }

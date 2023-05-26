@@ -9,8 +9,8 @@ namespace ETicaretApp_EntityLayer.Concrete
 {
     public class Category:BaseEntity
     {
-        public string Name { get; set; }
-
-        public List<ProductCategory> ProductCategories { get; set; }
+        public string CategoryName { get; set; }
+        //public List<ProductCategory> ProductCategory { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
