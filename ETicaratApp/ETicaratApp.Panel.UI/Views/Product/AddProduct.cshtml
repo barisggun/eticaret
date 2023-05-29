@@ -64,9 +64,16 @@
                                             @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new{@class="form-control"})
                                         </div>
 
-                                        <div class="mb-3">
+                                   @*     <div class="mb-3">
                                             <label class="form-label">Alt Kategori Seçiniz</label>
                                             @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new{@class="form-control"})
+                                        </div>*@
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Alt Kategori Seçiniz</label>
+                                            <select class="form-control" id="child" name="child">
+                                                <option value="">Seçiniz</option>
+                                            </select>
                                         </div>
 
 
@@ -197,4 +204,5 @@
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+
 
