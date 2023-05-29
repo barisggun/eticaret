@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretApp_DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230526090642_InitialMigration")]
+    [Migration("20230529120802_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -80,9 +80,34 @@ namespace ETicaretApp_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MainCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.CategoryProperties", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PropertyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryProperties");
                 });
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Order", b =>
@@ -192,6 +217,9 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -208,6 +236,8 @@ namespace ETicaretApp_DataAccess.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -231,6 +261,17 @@ namespace ETicaretApp_DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.CategoryProperties", b =>
+                {
+                    b.HasOne("ETicaretApp_EntityLayer.Concrete.Category", "Category")
+                        .WithMany("CategoryProperties")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.OrderItem", b =>
                 {
                     b.HasOne("ETicaretApp_EntityLayer.Concrete.Order", "Order")
@@ -250,9 +291,27 @@ namespace ETicaretApp_DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Product", b =>
+                {
+                    b.HasOne("ETicaretApp_EntityLayer.Concrete.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Cart", b =>
                 {
                     b.Navigation("CartItems");
+                });
+
+            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Category", b =>
+                {
+                    b.Navigation("CategoryProperties");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Order", b =>

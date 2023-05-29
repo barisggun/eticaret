@@ -239,33 +239,6 @@ namespace ETicaretApp_DataAccess.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.PropertyValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryPropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryPropertyId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("PropertyValues");
-                });
-
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.CartItem", b =>
                 {
                     b.HasOne("ETicaretApp_EntityLayer.Concrete.Cart", "Cart")
@@ -324,25 +297,6 @@ namespace ETicaretApp_DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.PropertyValue", b =>
-                {
-                    b.HasOne("ETicaretApp_EntityLayer.Concrete.CategoryProperties", "CategoryProperty")
-                        .WithMany()
-                        .HasForeignKey("CategoryPropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ETicaretApp_EntityLayer.Concrete.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CategoryProperty");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.Cart", b =>
