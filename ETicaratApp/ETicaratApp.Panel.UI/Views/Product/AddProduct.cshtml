@@ -61,7 +61,7 @@
 
                                         <div class="mb-3">
                                             <label class="form-label">Kategori Seçiniz</label>                                          
-                                            @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new{@class="form-control"})
+                                            @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new{@class="form-control",id="parentCategory"})
                                         </div>
 
                                    @*     <div class="mb-3">
@@ -69,11 +69,9 @@
                                             @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new{@class="form-control"})
                                         </div>*@
 
-                                        <div class="mb-3">
-                                            <label class="form-label">Alt Kategori Seçiniz</label>
-                                            <select class="form-control" id="child" name="child">
-                                                <option value="">Seçiniz</option>
-                                            </select>
+                                        <div class="mb-3" id="denemePartial">
+
+
                                         </div>
 
 
@@ -205,4 +203,11 @@
     </div>
     <!-- End Page-content -->
 
-
+    <script>
+        $(document).ready(function () {
+            $("#parentCategory").change(function () {
+                var parentId = $(this).val();
+                $("#denemePartial").load("demo_test.txt");
+            });
+        });
+    </script>
