@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretApp_DataAccess.EntityFramework
 {
-    public class EfCategoryProperty : GenericRepository<CategoryProperties>, ICategeoryProperty
+    public class EfCategoryProperty : GenericRepository<CategoryProperties>, ICategeoryPropertyDal
     {
     }
 }

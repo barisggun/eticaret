@@ -11,7 +11,7 @@ namespace ETicaretApp_EntityLayer.Concrete
     {
         public string CategoryName { get; set; }
 
-        public int? MainCatgeoryId { get; set; }
+        public int? MainCategoryId { get; set; }
 
         public List<CategoryProperties> CategoryProperties { get; set; }
         public List<Product> Products { get; set; }
