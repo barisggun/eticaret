@@ -39,7 +39,7 @@ namespace ETicaratApp.Panel.UI.Controllers
         public IActionResult AddProduct()
         {
             List<SelectListItem> categoryvalues = (from x in
-                 categoryManager.GetAll()
+                 categoryManager.GetAll().Where(c=>c.MainCategoryId == null)
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
