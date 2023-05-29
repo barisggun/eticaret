@@ -19,6 +19,7 @@ namespace ETicaretApp_DataAccess.Concrete
             
             //optionsBuilder.UseSqlServer("server=ISILAY;database=ETicaretApp;Trusted_Connection=true;TrustServerCertificate=true");
             optionsBuilder.UseSqlServer("server =(localdb)\\MSSQLLocalDB;database=ETic;Trusted_Connection=true;TrustServerCertificate=true");
+            
         }
     
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +38,8 @@ namespace ETicaretApp_DataAccess.Concrete
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryProperties> CategoryProperties { get; set; }
+        public DbSet<PropertyValue> PropertyValues { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
