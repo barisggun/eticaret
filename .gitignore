@@ -394,8 +394,6 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# JetBrains Rider
-*.sln.iml
-/ETicaratApp/ETicaretApp-DataAccess/Concrete/Context.cs
+
 
 
