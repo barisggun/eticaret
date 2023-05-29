@@ -4,6 +4,7 @@ using ETicaretApp_DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretApp_DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230529114243_CategoryUpdate")]
+    partial class CategoryUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +80,7 @@ namespace ETicaretApp_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MainCategoryId")
+                    b.Property<int?>("MainCatgeoryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -92,6 +95,9 @@ namespace ETicaretApp_DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategeoryId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -247,7 +253,7 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryPropertyId")
+                    b.Property<int>("CatgeoryPropertyId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -259,7 +265,7 @@ namespace ETicaretApp_DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryPropertyId");
+                    b.HasIndex("CatgeoryPropertyId");
 
                     b.HasIndex("ProductId");
 
@@ -328,9 +334,9 @@ namespace ETicaretApp_DataAccess.Migrations
 
             modelBuilder.Entity("ETicaretApp_EntityLayer.Concrete.PropertyValue", b =>
                 {
-                    b.HasOne("ETicaretApp_EntityLayer.Concrete.CategoryProperties", "CategoryProperty")
+                    b.HasOne("ETicaretApp_EntityLayer.Concrete.CategoryProperties", "CatgeoryProperty")
                         .WithMany()
-                        .HasForeignKey("CategoryPropertyId")
+                        .HasForeignKey("CatgeoryPropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -340,7 +346,7 @@ namespace ETicaretApp_DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CategoryProperty");
+                    b.Navigation("CatgeoryProperty");
 
                     b.Navigation("Product");
                 });

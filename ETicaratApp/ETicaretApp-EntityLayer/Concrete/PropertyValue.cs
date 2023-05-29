@@ -9,8 +9,8 @@ namespace ETicaretApp_EntityLayer.Concrete
 {
     public class PropertyValue : BaseEntity
     {
-        public int CatgeoryPropertyId { get; set; }
-        public CategoryProperties CatgeoryProperty { get; set; }
+        public int CategoryPropertyId { get; set; }
+        public CategoryProperties CategoryProperty { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public string Value { get; set; }

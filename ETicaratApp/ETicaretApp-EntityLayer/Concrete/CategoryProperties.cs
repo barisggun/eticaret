@@ -9,7 +9,7 @@ namespace ETicaretApp_EntityLayer.Concrete
 {
     public class CategoryProperties : BaseEntity
     {
-        public int CategeoryId { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string PropertyName { get; set; }
 
