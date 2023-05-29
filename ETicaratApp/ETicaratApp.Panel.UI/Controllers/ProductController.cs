@@ -117,7 +117,7 @@ namespace ETicaratApp.Panel.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult CategoryPartial()
+        public IActionResult CategoryPartial(int )
         {
             return PartialView("_CreateCatgeoryPartialView", new Product());
         }
