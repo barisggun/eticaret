@@ -119,7 +119,16 @@ namespace ETicaratApp.Panel.UI.Controllers
 
         public IActionResult CategoryPartial(int id)
         {
-            return PartialView("_CreateCatgeoryPartialView", new Product());
+            List<SelectListItem> categoryvalues = (from x in
+                 categoryManager.GetAll().Where(c => c.MainCategoryId == id)
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.Id.ToString()
+                                                   }).ToList();
+            
+
+            return PartialView("_CreateCatgeoryPartialView", categoryvalues);
         }
 
     }
