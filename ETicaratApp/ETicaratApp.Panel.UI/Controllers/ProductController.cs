@@ -131,5 +131,7 @@ namespace ETicaratApp.Panel.UI.Controllers
             return PartialView("_CreateCatgeoryPartialView", categoryvalues);
         }
 
+        
+
     }
 }
