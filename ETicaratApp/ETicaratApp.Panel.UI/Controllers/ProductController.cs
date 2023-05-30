@@ -142,7 +142,7 @@ namespace ETicaratApp.Panel.UI.Controllers
                                                        Value = x.Id.ToString()
                                                    }).ToList();
 
-            return PartialView("_CreateCatgeoryPartialView", categoryvalues);
+            return PartialView("_CreateCategoryPropertyPartialView", categoryvalues);
         }
 
     }

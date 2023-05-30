@@ -71,7 +71,10 @@
 
                                         <div class="mb-3" id="denemePartial">
                                         </div>
+                                        <div class="mb-3" id="propertyPartial">
 
+
+                                        </div>
 
                                         <div class="mb-3">
                                             <label asp-for="Name">Product Name</label>
@@ -123,9 +126,13 @@
     <script>
         $(document).ready(function () {
             $("#parentCategory").change(function () {
+                $(".input-property")
                 var parentId = $(this).val();
                 $("#denemePartial").load("/Product/CategoryPartial/" + parentId);
+                $("#propertyPartial").html("");
             });
         });
     </script>
+  
+  
 
