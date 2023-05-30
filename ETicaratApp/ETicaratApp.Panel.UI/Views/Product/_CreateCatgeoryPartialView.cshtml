@@ -5,9 +5,20 @@
     <select class="form-control" id="child" name="child">
         @foreach (var item in Model)
 {
-        <option value="">@item.Text</option>
+        <option value="@item.Value">@item.Text</option>
 }
     </select>
+
+<script>
+    $(document).ready(function () {
+       
+        $("#child").change(function () {
+            console.log($(this).val());
+            var child = $(this).val();
+            $("#propertyPartial").load("/Product/CategoryPropertyPartial/" + child);
+        });
+    });
+</script>
 
 
 
