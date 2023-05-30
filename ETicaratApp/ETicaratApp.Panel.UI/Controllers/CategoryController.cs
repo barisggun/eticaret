@@ -50,12 +50,5 @@ namespace ETicaratApp.Panel.UI.Controllers
             cm.Delete(category);
             return RedirectToAction("Index");
         }
-
-        public IActionResult AddCategoryProperty() 
-        {
-
-
-            return RedirectToAction("Product", "Index");
-        }
     }
 }
