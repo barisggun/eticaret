@@ -1,4 +1,5 @@
-﻿using ETicaretApp_BusinessLayer.Abstract;
+﻿using ETicaratApp.Panel.UI.Models;
+using ETicaretApp_BusinessLayer.Abstract;
 using ETicaretApp_BusinessLayer.Concrete;
 using ETicaretApp_DataAccess.Concrete;
 using ETicaretApp_DataAccess.EntityFramework;
@@ -132,17 +133,14 @@ namespace ETicaratApp.Panel.UI.Controllers
             return PartialView("_CreateCatgeoryPartialView", categoryvalues);
         }
 
-        public IActionResult CategoryPropertyPartial(int id)
-        {
-             List<SelectListItem> categoryvalues = (from x in
-                 propertyManager.GetAll().Where(c => c.CategoryId == id)
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.PropertyName,
-                                                       Value = x.Id.ToString()
-                                                   }).ToList();
 
-            return PartialView("_CreateCategoryPropertyPartialView", categoryvalues);
+
+        public IActionResult AddCategoryProperty(int id)
+        {
+            var productId = productManager.GetById(id);
+            
+
+            return View(propertyManager.GetAll().Where(x=> x.CategoryId == productId.CategoryId).ToList());
         }
 
     }

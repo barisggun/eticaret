@@ -10,6 +10,16 @@ namespace ETicaratApp.Panel.UI.Controllers
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+        CategoryPropertyManager cpm = new CategoryPropertyManager(new EfCategoryProperty());
+        PropertyValueManager pvm = new PropertyValueManager(new EfPropertyValue());
+
+        public CategoryController(CategoryManager cm, CategoryPropertyManager cpm, PropertyValueManager pvm)
+        {
+            this.cm = cm;
+            this.cpm = cpm;
+            this.pvm = pvm;
+        }
+
         public IActionResult Index()
         {
             var values = cm.GetAll();
