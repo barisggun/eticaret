@@ -5,7 +5,7 @@
 <section class="featured-products-section">
     <div class="container">
         <h2 class="section-title heading-border ls-20 border-0">
-            Featured Products
+            ÜRÜNLERİMİZ
         </h2>
 
         <div class="products-slider custom-products owl-carousel owl-theme nav-outer show-nav-hover nav-image-center"
@@ -19,12 +19,15 @@
                 <div class="product-default appear-animate"
                      data-animation-name="fadeInRightShorter">
                     <figure>
-                        <a href="product.html">
-                            <img src="~/images/product/@item.ImageUrl"
-                                 width="400"
-                                 height="400"
-                                 alt="product" />
-                        </a>
+                        <style>
+                            .product-image {
+                                width: 400px !important;
+                                height: 400px !important;
+                            }
+                        </style>
+
+                        <img src="~/images/product/@item.ImageUrl" class="product-image" alt="product" />
+
                         <div class="label-group">
                             <div class="product-label label-hot">HOT</div>
                             <div class="product-label label-sale">-20%</div>
