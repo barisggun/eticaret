@@ -117,7 +117,7 @@
     @await Html.PartialAsync("_FeatureProductsPartial")
 
 
-    @await Html.PartialAsync("_CategoryListPartial")
+    @await Component.InvokeAsync("CategoryList")
 
     <section class="feature-boxes-container">
         <div class="container appear-animate"
