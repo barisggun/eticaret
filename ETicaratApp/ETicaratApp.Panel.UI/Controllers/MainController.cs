@@ -17,5 +17,17 @@ namespace ETicaratApp.Panel.UI.Controllers
             //var values = pm.GetProductListWithCategory();
             //return View(values);
         }
+
+        public IActionResult ProductReadAll(int id)
+        {
+            //ViewBag.i = id;
+            //var values = pm.GetById(id);
+            //return View(values);
+
+            var productId = pm.GetById(id);
+            return View(pm.GetAll().Where(x => x.Id == id).ToList());
+
+
+        }
     }
 }
