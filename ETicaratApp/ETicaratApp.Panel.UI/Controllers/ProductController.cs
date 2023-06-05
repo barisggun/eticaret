@@ -7,6 +7,8 @@ using ETicaretApp_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
+using Newtonsoft.Json.Linq;
 using System.Reflection.Metadata;
 
 namespace ETicaratApp.Panel.UI.Controllers
@@ -138,11 +140,33 @@ namespace ETicaratApp.Panel.UI.Controllers
 
         public IActionResult AddCategoryProperty(int id)
         {
-            var productId = productManager.GetById(id);
+            var product = productManager.GetById(id);
+            var properties = propertyManager.GetAll().Where(x => x.CategoryId == product.CategoryId).ToList();
 
+            List<ProductProperty> productProperty = new List<ProductProperty>();
+            foreach (var property in properties)
+            {
+                var value = "";
+                if (propertyValueManager.GetAll().Any(x => x.ProductId == product.Id && x.CategoryPropertyId == property.Id))
+                {
+                    value = propertyValueManager.GetAll().FirstOrDefault(x => x.ProductId == product.Id && x.CategoryPropertyId == property.Id).Value;
+                }
+                productProperty.Add(new ProductProperty
+                {
+                    Id = property.Id.ToString(),
+                    ProductId = product.Id,
+                    PropertyName = property.PropertyName,
+                    Value = value
 
-            return View(propertyManager.GetAll().Where(x => x.CategoryId == productId.CategoryId).ToList());
+                });
+            }
+            //return View(propertyManager.GetAll().Where(x => x.CategoryId == productId.CategoryId).ToList());
+            return View(productProperty);
         }
+
+
+
+
 
         [HttpPost]
         public IActionResult SaveProductProperties(List<ProductProperty> model)
@@ -150,15 +174,24 @@ namespace ETicaratApp.Panel.UI.Controllers
 
             foreach (var item in model)
             {
-          
-                propertyValueManager.Create(new PropertyValue
+                if (propertyValueManager.GetAll().Any(x => x.ProductId == item.ProductId && x.CategoryPropertyId == Convert.ToInt32(item.Id)))
                 {
-                    ProductId = item.ProductId,
-                    CategoryPropertyId = Convert.ToInt32(item.Id),
-                    Value = item.Value
+                    var prop = propertyValueManager.GetAll().FirstOrDefault(x => x.ProductId == item.ProductId && x.CategoryPropertyId == Convert.ToInt32(item.Id));
 
-                });
+                    prop.Value = item.Value;
 
+                    propertyValueManager.Update(prop);
+                }
+                else
+                {
+                    propertyValueManager.Create(new PropertyValue
+                    {
+                        ProductId = item.ProductId,
+                        CategoryPropertyId = Convert.ToInt32(item.Id),
+                        Value = item.Value
+
+                    });
+                }
             }
             return Ok();
         }
