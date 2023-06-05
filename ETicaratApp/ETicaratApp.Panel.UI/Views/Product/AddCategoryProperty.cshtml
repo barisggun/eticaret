@@ -1,4 +1,4 @@
-﻿@model List<CategoryProperties>
+﻿@model List<ProductProperty>
 @{
     ViewData["Title"] = "AddCategoryProperty";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -57,7 +57,7 @@
                                             <div class="mb-3" id="propertyPartial">
 
                                                 <label>@item.PropertyName</label>
-                                                <input type="text" class="form-control input-property" id="@item.Id">
+                                                <input type="text" class="form-control input-property" id="@item.Id" value="@item.Value">
                                             </div>
                                         }
 
