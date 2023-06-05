@@ -56,18 +56,16 @@
                                             <div class="mb-3" id="propertyPartial">
 
                                                 <label>@item.PropertyName</label>
-                                                <input type="text" class="form-control input-property-@item.Id">
+                                                <input type="text" class="form-control input-property" id="@item.Id">
                                             </div>
                                         }
-
-                                     
 
                                     </div>
                                 </div>
                             </div>
 
                             <div class="d-flex flex-wrap gap-2">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">Değişiklikleri Kaydet</button>
+                                <button type="button" onclick="SaveProductProperties" class="btn btn-primary waves-effect waves-light">Değişiklikleri Kaydet</button>
                                 <a asp-action="Index" class="btn btn-secondary waves-effect waves-light">Geri Dön</a>
 
                             </div>
@@ -86,3 +84,11 @@
 <!-- End Page-content -->
 <script src="~/admin/assets/libs/jquery/jquery.min.js"></script>
 
+<script>
+    function SaveProductProperties() {
+        var list = new Array();
+        list.push({ id: 1, value: "8 GB" });
+        //$(".input-property")
+        console.log(list);
+    }
+</script>

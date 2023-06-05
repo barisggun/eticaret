@@ -143,5 +143,11 @@ namespace ETicaratApp.Panel.UI.Controllers
             return View(propertyManager.GetAll().Where(x=> x.CategoryId == productId.CategoryId).ToList());
         }
 
+        public IActionResult SaveProductProperties(List<ProductProperty> model)
+        {
+
+            return Ok();
+        }
+
     }
 }
