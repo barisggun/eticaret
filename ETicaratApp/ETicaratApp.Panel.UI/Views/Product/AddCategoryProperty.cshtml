@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "AddCategoryProperty";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var id = ViewContext.RouteData.Values["id"];
 }
 
 
@@ -65,7 +66,7 @@
                             </div>
 
                             <div class="d-flex flex-wrap gap-2">
-                                <button type="button" onclick="SaveProductProperties" class="btn btn-primary waves-effect waves-light">Değişiklikleri Kaydet</button>
+                                <button type="button" onclick="SaveProductProperties()" class="btn btn-primary waves-effect waves-light">Değişiklikleri Kaydet</button>
                                 <a asp-action="Index" class="btn btn-secondary waves-effect waves-light">Geri Dön</a>
 
                             </div>
@@ -84,7 +85,7 @@
 <!-- End Page-content -->
 <script src="~/admin/assets/libs/jquery/jquery.min.js"></script>
 
-<script>
+@*<script>
     function SaveProductProperties() {
         var list = new Array();
         list.push({ id: 1, value: "8 GB" });
@@ -92,3 +93,33 @@
         console.log(list);
     }
 </script>
+*@
+<script>
+
+    function SaveProductProperties() {
+
+        var list = new Array();
+        $('.input-property').each(function () {
+            list.push({ id: $(this).attr('id'), value: $(this).val(), productId: @id });
+        });
+
+        console.log(list); // Bu kısmı kendi ihtiyaçlarınıza göre düzenleyebilirsiniz.
+
+        $.ajax({
+            url: '/Product/SaveProductProperties',
+            method: 'POST',
+            data: { model: list },
+            success: function (response) {
+                // Handle success response here
+            },
+            error: function (xhr, textStatus, error) {
+                // Handle error response here
+            }
+        });
+    };
+
+ 
+
+
+</script>
+

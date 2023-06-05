@@ -21,6 +21,7 @@ namespace ETicaratApp.Panel.UI.Controllers
         CategoryManager categoryManager = new CategoryManager
             (new EfCategoryRepository());
         CategoryPropertyManager propertyManager = new CategoryPropertyManager(new EfCategoryProperty());
+        PropertyValueManager propertyValueManager = new PropertyValueManager(new EfPropertyValue());
 
         public ProductController(IWebHostEnvironment webHostEnvironment)
         {
@@ -41,7 +42,7 @@ namespace ETicaratApp.Panel.UI.Controllers
         public IActionResult AddProduct()
         {
             List<SelectListItem> categoryvalues = (from x in
-                 categoryManager.GetAll().Where(c=>c.MainCategoryId == null)
+                 categoryManager.GetAll().Where(c => c.MainCategoryId == null)
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
@@ -72,7 +73,7 @@ namespace ETicaratApp.Panel.UI.Controllers
                 product.ImageUrl = yeniDosyaAdi;
             }
 
-           
+
             productManager.Create(product);
             return RedirectToAction("Index");
         }
@@ -128,7 +129,7 @@ namespace ETicaratApp.Panel.UI.Controllers
                                                        Text = x.CategoryName,
                                                        Value = x.Id.ToString()
                                                    }).ToList();
-            
+
 
             return PartialView("_CreateCatgeoryPartialView", categoryvalues);
         }
@@ -138,15 +139,28 @@ namespace ETicaratApp.Panel.UI.Controllers
         public IActionResult AddCategoryProperty(int id)
         {
             var productId = productManager.GetById(id);
-            
 
-            return View(propertyManager.GetAll().Where(x=> x.CategoryId == productId.CategoryId).ToList());
+
+            return View(propertyManager.GetAll().Where(x => x.CategoryId == productId.CategoryId).ToList());
         }
 
+        [HttpPost]
         public IActionResult SaveProductProperties(List<ProductProperty> model)
         {
 
-            return Ok();
+            foreach (var item in model)
+            {
+
+                propertyValueManager.Create(new PropertyValue
+                {
+                    ProductId = item.ProductId,
+                    CategoryPropertyId = Convert.ToInt32(item.Id),
+                    Value = item.Value
+
+                });
+
+            }
+            return RedirectToAction("Index");
         }
 
     }
