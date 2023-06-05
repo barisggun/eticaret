@@ -150,7 +150,7 @@ namespace ETicaratApp.Panel.UI.Controllers
 
             foreach (var item in model)
             {
-
+          
                 propertyValueManager.Create(new PropertyValue
                 {
                     ProductId = item.ProductId,
@@ -160,7 +160,7 @@ namespace ETicaratApp.Panel.UI.Controllers
                 });
 
             }
-            return RedirectToAction("Index");
+            return Ok();
         }
 
     }
