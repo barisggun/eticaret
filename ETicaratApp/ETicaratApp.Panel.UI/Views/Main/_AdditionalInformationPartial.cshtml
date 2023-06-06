@@ -1,0 +1,17 @@
+﻿@using ETicaretApp_EntityLayer.Concrete
+@model List<ProductProperty>
+
+
+<div class="tab-pane fade" id="product-tags-content" role="tabpanel" aria-labelledby="product-tab-tags">
+    <table class="table table-striped mt-2">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.PropertyName</th>
+                    <td>@item.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
