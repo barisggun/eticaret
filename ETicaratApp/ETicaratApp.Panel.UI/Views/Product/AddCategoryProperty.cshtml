@@ -103,7 +103,7 @@
             list.push({ id: $(this).attr('id'), value: $(this).val(), productId: @id });
         });
 
-        console.log(list); // Bu kısmı kendi ihtiyaçlarınıza göre düzenleyebilirsiniz.
+        console.log(list);
 
         $.ajax({
             url: '/Product/SaveProductProperties',
@@ -117,9 +117,5 @@
             }
         });
     };
-
- 
-
-
 </script>
 
